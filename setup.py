@@ -24,7 +24,6 @@ setup(
     author='Nitin Flavier',
     author_email='nitinflavier13@gmail.com',
     packages=find_packages(),
-    install_requires=get_requirements('requirements.txt'),
+    install_requires=get_requirements('requirements.txt')
     
-
 )
