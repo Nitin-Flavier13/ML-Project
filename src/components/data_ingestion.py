@@ -8,6 +8,8 @@ from src.exception import CustomException
 from dataclasses import dataclass
 from sklearn.model_selection import train_test_split
 
+from src.components.data_transformation import DataTransformation
+
 # for defining variables
 @dataclass
 class DataIngestionConfig:
@@ -23,7 +25,7 @@ class DataIngestion:
         logging.info("Entered Data Ingestion")
         try:
             # -- will be updating
-            df = pd.read_csv(r'notebook\data\StudentsPerformance.csv')
+            df = pd.read_csv('notebook/data/StudentsPerformance.csv')
             logging.info('Read the dataset as dataframe')
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist_ok=True)
@@ -45,4 +47,10 @@ class DataIngestion:
 
 if __name__ == "__main__":
     obj = DataIngestion()
-    obj.initiate_data_ingestion()
+    train_data_path,test_data_path = obj.initiate_data_ingestion()
+
+    num_features = ['writing score','reading score']
+    cat_features = ['gender','race/ethnicity','parental level of education','lunch','test preparation course']
+
+    obj = DataTransformation(target_column="math score",num_features=num_features,cat_features=cat_features)
+    obj.initiate_data_tranformation(train_path=train_data_path,test_path=test_data_path)
