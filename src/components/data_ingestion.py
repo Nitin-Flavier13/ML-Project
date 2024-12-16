@@ -8,6 +8,7 @@ from src.exception import CustomException
 from dataclasses import dataclass
 from sklearn.model_selection import train_test_split
 
+from src.components.model_trainer import ModelTrainer
 from src.components.data_transformation import DataTransformation
 
 # for defining variables
@@ -53,4 +54,8 @@ if __name__ == "__main__":
     cat_features = ['gender','race/ethnicity','parental level of education','lunch','test preparation course']
 
     obj = DataTransformation(target_column="math score",num_features=num_features,cat_features=cat_features)
-    obj.initiate_data_tranformation(train_path=train_data_path,test_path=test_data_path)
+    train_arr,test_arr,preproccesor_path = obj.initiate_data_tranformation(train_path=train_data_path,test_path=test_data_path)
+
+    modelTrainer = ModelTrainer()
+    best_model_score = modelTrainer.initiate_model_trainer(train_arr,test_arr)
+    print("Best model score: ",best_model_score)
