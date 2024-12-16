@@ -57,5 +57,6 @@ if __name__ == "__main__":
     train_arr,test_arr,preproccesor_path = obj.initiate_data_tranformation(train_path=train_data_path,test_path=test_data_path)
 
     modelTrainer = ModelTrainer()
-    best_model_score = modelTrainer.initiate_model_trainer(train_arr,test_arr)
-    print("Best model score: ",best_model_score)
+    best_model_score,best_tuned_score = modelTrainer.initiate_model_trainer(train_arr,test_arr)
+    print("Best Model score: ",best_model_score)
+    print("Best Tuned Model score: ",best_model_score)
