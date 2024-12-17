@@ -7,8 +7,7 @@ from sklearn.preprocessing import StandardScaler
 from src.logger import logging
 from src.pipeline.predict_pipeline import CustomData, PredictPipeline
 
-application = Flask(__name__)
-app = application 
+app = Flask(__name__)
 
 @app.route('/',methods=['POST','GET'])
 def predict_data():
@@ -35,7 +34,7 @@ def predict_data():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0",debug=True)
+    app.run(host="0.0.0.0")
 
 
 

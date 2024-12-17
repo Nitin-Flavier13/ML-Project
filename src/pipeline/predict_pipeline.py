@@ -25,8 +25,6 @@ class PredictPipeline:
             output_predicted = model.predict(data_scaled)
             logging.info('Output prediction completed')
 
-            print(output_predicted)
-
             return output_predicted
 
         except Exception as e:
